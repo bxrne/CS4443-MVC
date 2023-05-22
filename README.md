@@ -1,11 +1,11 @@
 # RMIS
 
-## Install
+## Install
 ```bash 
 mvn clean install
 ```
 
-## Test
+## Test
 ```bash
 mvn test
 ```
