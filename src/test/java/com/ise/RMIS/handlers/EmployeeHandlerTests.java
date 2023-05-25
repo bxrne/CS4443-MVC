@@ -1,4 +1,4 @@
-package com.ise.RMIS.lib;
+package com.ise.RMIS.handlers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import com.ise.RMIS.handlers.EmployeeHandler;
 import com.ise.RMIS.models.Employee;
 
-class ModelTests {
+class EmployeeHandlerTests {
     private static final String TEST_DATABASE_PATH = "src/main/resources/static/test-database.csv";
     private EmployeeHandler model;
 
