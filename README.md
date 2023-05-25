@@ -7,12 +7,12 @@
 - Login for administrators
 - One extra feature
 
-## Added value
+## Added value
 - Static code analysis with SonarCloud
 - Unit testing with JUnit
 - Repository pattern for data access
 
-## Run
+## Run
 ```bash 
 mvn clean install
 mvn test
