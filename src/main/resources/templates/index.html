@@ -2,9 +2,38 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Insert title here</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login</title>
+		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
-	<body>
-		<h1>Hello</h1>
+
+	<body class="bg-gray-100 flex items-center justify-center h-screen">
+		<div class="flex flex-col items-center">
+			<div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-10 w-4/5">
+				<h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">Calculate Weekly Salary</h1>
+				<form method="POST">
+					<div class="mb-4">
+						<label class="block text-gray-700 text-sm font-bold mb-2" for="hours">Hours Worked</label>
+						<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							   id="hours"
+							   type="text"
+							   name="hours"
+							   placeholder="Enter the hours you worked this week"
+							   required />
+					</div>
+
+					<div class="my-5">
+						<input class="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+							   type="submit"
+							   value="Submit" />
+					</div>
+				</form>
+			</div>
+
+			<div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-10 w-4/5 mt-8">
+				<h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Your weekly salary</h2>
+				<h3 class="text-l text-gray-800 mb-4 text-center" id='sal_calculated'>...</h3>
+			</div>
+		</div>
 	</body>
 </html>
