@@ -12,12 +12,12 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.ise.RMIS.handlers.Model;
+import com.ise.RMIS.handlers.EmployeeHandler;
 import com.ise.RMIS.models.Employee;
 
 class ModelTests {
     private static final String TEST_DATABASE_PATH = "src/main/resources/static/test-database.csv";
-    private Model model;
+    private EmployeeHandler model;
 
     @BeforeEach
     void setUp() throws IOException {
@@ -30,12 +30,12 @@ class ModelTests {
 
         testFile.createNewFile();
 
-        model = new Model(TEST_DATABASE_PATH);
+        model = new EmployeeHandler(TEST_DATABASE_PATH);
     }
 
     @Test
     void testModelConstructor_ThrowsFileNotFoundException() {
-        assertThrows(FileNotFoundException.class, () -> new Model("nonexistent-file.csv"));
+        assertThrows(FileNotFoundException.class, () -> new EmployeeHandler("nonexistent-file.csv"));
     }
 
     @Test

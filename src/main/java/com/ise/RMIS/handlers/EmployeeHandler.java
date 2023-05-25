@@ -7,10 +7,10 @@ import java.io.FileWriter;
 
 import com.ise.RMIS.models.Employee;
 
-public class Model {
+public class EmployeeHandler {
     private File file;
 
-    public Model() throws FileNotFoundException {
+    public EmployeeHandler() throws FileNotFoundException {
         file = new File("src/main/resources/static/database.csv");
 
         if (!file.exists()) {
@@ -22,7 +22,7 @@ public class Model {
      * Constructor that takes a path to the database file
      * Specifically for database mocking in tests
      */
-    public Model(String path) throws FileNotFoundException {
+    public EmployeeHandler(String path) throws FileNotFoundException {
         file = new File(path);
 
         if (!file.exists()) {
