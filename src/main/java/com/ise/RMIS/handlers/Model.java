@@ -1,9 +1,11 @@
-package com.ise.RMIS.lib;
+package com.ise.RMIS.handlers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+
+import com.ise.RMIS.models.Employee;
 
 public class Model {
     private File file;

@@ -1,10 +1,10 @@
-package com.ise.RMIS.lib;
+package com.ise.RMIS.models;
 
 public class User {
     private String username;
     private String password;
 
-    User(String _username, String _password) {
+    public User(String _username, String _password) {
         username = _username;
         password = _password;
     }
