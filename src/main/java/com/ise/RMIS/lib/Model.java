@@ -39,7 +39,7 @@ public class Model {
         try (FileWriter writer = new FileWriter(file, true);) {
             writer.write(employee.toString() + "\n");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
@@ -68,7 +68,7 @@ public class Model {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return null;
@@ -99,7 +99,7 @@ public class Model {
 
             return employees;
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return new Employee[0];

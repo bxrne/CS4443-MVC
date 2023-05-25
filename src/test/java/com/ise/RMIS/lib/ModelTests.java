@@ -12,12 +12,12 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ModelTests {
+class ModelTests {
     private static final String TEST_DATABASE_PATH = "src/main/resources/static/test-database.csv";
     private Model model;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void setUp() throws IOException {
         // Create a test database file
         File testFile = new File(TEST_DATABASE_PATH);
 
@@ -31,12 +31,12 @@ public class ModelTests {
     }
 
     @Test
-    public void testModelConstructor_ThrowsFileNotFoundException() {
+    void testModelConstructor_ThrowsFileNotFoundException() {
         assertThrows(FileNotFoundException.class, () -> new Model("nonexistent-file.csv"));
     }
 
     @Test
-    public void testAddEmployee() {
+    void testAddEmployee() {
         Employee employee = new Employee(1, "John Doe", 1000.0);
 
         // Add the employee to the model
@@ -56,7 +56,7 @@ public class ModelTests {
     }
 
     @Test
-    public void testGetEmployee_ExistingEmployee() {
+    void testGetEmployee_ExistingEmployee() {
         Employee employee = new Employee(1, "John Doe", 1000.0);
 
         // Add the employee to the model
@@ -76,7 +76,7 @@ public class ModelTests {
     }
 
     @Test
-    public void testGetEmployee_NonexistentEmployee() {
+    void testGetEmployee_NonexistentEmployee() {
         // Retrieve a non-existent employee
         Employee retrievedEmployee = model.getEmployee(1);
 
@@ -85,7 +85,7 @@ public class ModelTests {
     }
 
     @Test
-    public void testGetAllEmployees() {
+    void testGetAllEmployees() {
         Employee[] employees = {
                 new Employee(1, "John Doe", 1000.0),
                 new Employee(2, "Jane Smith", 2000.0),
