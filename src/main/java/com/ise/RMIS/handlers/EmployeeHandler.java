@@ -1,14 +1,16 @@
-package com.ise.RMIS.lib;
+package com.ise.RMIS.handlers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class Model {
+import com.ise.RMIS.models.Employee;
+
+public class EmployeeHandler {
     private File file;
 
-    public Model() throws FileNotFoundException {
+    public EmployeeHandler() throws FileNotFoundException {
         file = new File("src/main/resources/static/database.csv");
 
         if (!file.exists()) {
@@ -20,7 +22,7 @@ public class Model {
      * Constructor that takes a path to the database file
      * Specifically for database mocking in tests
      */
-    public Model(String path) throws FileNotFoundException {
+    public EmployeeHandler(String path) throws FileNotFoundException {
         file = new File(path);
 
         if (!file.exists()) {

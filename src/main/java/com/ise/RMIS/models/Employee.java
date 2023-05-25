@@ -1,4 +1,4 @@
-package com.ise.RMIS.lib;
+package com.ise.RMIS.models;
 
 public class Employee {
     private int id;
@@ -6,7 +6,7 @@ public class Employee {
     private double weekHours;
     private double salary;
 
-    Employee(int _id, String _name, double _weekHours) {
+    public Employee(int _id, String _name, double _weekHours) {
         id = _id;
         name = _name;
         weekHours = _weekHours;

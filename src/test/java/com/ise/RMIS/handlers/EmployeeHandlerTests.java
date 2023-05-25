@@ -1,4 +1,4 @@
-package com.ise.RMIS.lib;
+package com.ise.RMIS.handlers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,9 +12,12 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ModelTests {
+import com.ise.RMIS.handlers.EmployeeHandler;
+import com.ise.RMIS.models.Employee;
+
+class EmployeeHandlerTests {
     private static final String TEST_DATABASE_PATH = "src/main/resources/static/test-database.csv";
-    private Model model;
+    private EmployeeHandler model;
 
     @BeforeEach
     void setUp() throws IOException {
@@ -27,12 +30,12 @@ class ModelTests {
 
         testFile.createNewFile();
 
-        model = new Model(TEST_DATABASE_PATH);
+        model = new EmployeeHandler(TEST_DATABASE_PATH);
     }
 
     @Test
     void testModelConstructor_ThrowsFileNotFoundException() {
-        assertThrows(FileNotFoundException.class, () -> new Model("nonexistent-file.csv"));
+        assertThrows(FileNotFoundException.class, () -> new EmployeeHandler("nonexistent-file.csv"));
     }
 
     @Test
