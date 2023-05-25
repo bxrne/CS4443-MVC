@@ -49,20 +49,24 @@ public class Model {
     public Employee getEmployee(int id) {
         try (FileReader reader = new FileReader(file)) {
             int c;
-            String data = "";
+            StringBuilder dataBuilder = new StringBuilder();
             while ((c = reader.read()) != -1) {
-                data += (char) c;
+                dataBuilder.append((char) c);
             }
+            String data = dataBuilder.toString();
 
             String[] lines = data.split("\n");
 
             for (String line : lines) {
                 String[] employeeData = line.split(",");
                 if (Integer.parseInt(employeeData[0]) == id) {
-                    return new Employee(Integer.parseInt(employeeData[0]), employeeData[1],
+                    return new Employee(
+                            Integer.parseInt(employeeData[0]),
+                            employeeData[1],
                             Double.parseDouble(employeeData[2]));
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,17 +80,20 @@ public class Model {
     public Employee[] getAllEmployees() {
         try (FileReader reader = new FileReader(file);) {
             int c;
-            String data = "";
+            StringBuilder dataBuilder = new StringBuilder();
             while ((c = reader.read()) != -1) {
-                data += (char) c;
+                dataBuilder.append((char) c);
             }
+            String data = dataBuilder.toString();
 
             String[] lines = data.split("\n");
             Employee[] employees = new Employee[lines.length];
 
             for (int i = 0; i < lines.length; i++) {
                 String[] employeeData = lines[i].split(",");
-                employees[i] = new Employee(Integer.parseInt(employeeData[0]), employeeData[1],
+                employees[i] = new Employee(
+                        Integer.parseInt(employeeData[0]),
+                        employeeData[1],
                         Double.parseDouble(employeeData[2]));
             }
 
