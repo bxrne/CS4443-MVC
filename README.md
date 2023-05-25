@@ -1,4 +1,4 @@
-# Software Architecture Porhect
+# MVC Architecture project
 
 [![SonarCloud analysis](https://github.com/theadambyrne/RMIS/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/theadambyrne/RMIS/actions/workflows/sonarcloud.yml) [![Build and Test](https://github.com/theadambyrne/RMIS/actions/workflows/build.yml/badge.svg)](https://github.com/theadambyrne/RMIS/actions/workflows/build.yml)
 
@@ -8,9 +8,10 @@
 - One extra feature
 
 ## Added value
-- Static code analysis with SonarCloud
 - Unit testing with JUnit
 - Repository pattern for data access
+- Static code analysis with SonarCloud
+- Dependency security analysis with Dependabot
 
 ## Run
 ```bash 
