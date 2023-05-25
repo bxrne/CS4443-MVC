@@ -13,6 +13,10 @@ public class User {
         return username;
     }
 
+    public boolean isUsernameCorrect(String _username) {
+        return username.equals(_username);
+    }
+
     public boolean isPasswordCorrect(String _password) {
         return password.equals(_password);
     }
