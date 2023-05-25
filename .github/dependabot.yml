@@ -1,7 +1,6 @@
-
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "maven" # Specify the package ecosystem as Maven
+    directory: "/" # Location of the package manifests (root directory)
     schedule:
       interval: "weekly"
