@@ -16,6 +16,21 @@ public class Model {
         }
     }
 
+    /*
+     * Constructor that takes a path to the database file
+     * Specifically for database mocking in tests
+     */
+    public Model(String path) throws FileNotFoundException {
+        file = new File(path);
+
+        if (!file.exists()) {
+            throw new FileNotFoundException("Database file not found: " + file.getAbsolutePath());
+        }
+    }
+
+    /*
+     * Adds an employee to the database if they don't already exist
+     */
     public void addEmployee(Employee employee) {
         if (getEmployee(employee.getId()) != null) {
             return;
@@ -28,19 +43,9 @@ public class Model {
         }
     }
 
-    public void deleteEmployee(int id) {
-        if (getEmployee(id) != null) {
-            return;
-        }
-
-        // TODO :: Remove line with id from file
-    }
-
-    public void updateEmployee(Employee employee) {
-        // TODO :: Check if employee exists (by id)
-        // TODO :: Update employee
-    }
-
+    /*
+     * Retrieves an employee from the database by their ID
+     */
     public Employee getEmployee(int id) {
         try (FileReader reader = new FileReader(file)) {
             int c;
@@ -65,6 +70,9 @@ public class Model {
         return null;
     }
 
+    /*
+     * Retrieves all employees from the database
+     */
     public Employee[] getAllEmployees() {
         try (FileReader reader = new FileReader(file);) {
             int c;
