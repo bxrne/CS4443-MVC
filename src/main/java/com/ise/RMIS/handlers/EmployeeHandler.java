@@ -7,7 +7,7 @@ import java.io.FileWriter;
 
 import com.ise.RMIS.models.Employee;
 
-public class EmployeeHandler {
+public class EmployeeHandler implements IEmployeeHandler {
     private File file;
 
     public EmployeeHandler() throws FileNotFoundException {
