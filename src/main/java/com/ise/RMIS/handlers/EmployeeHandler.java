@@ -65,7 +65,7 @@ public class EmployeeHandler implements IEmployeeHandler {
                     return new Employee(
                             Integer.parseInt(employeeData[0]),
                             employeeData[1],
-                            Double.parseDouble(employeeData[2]));
+                            Double.parseDouble(employeeData[2]), Double.parseDouble(employeeData[3]));
                 }
             }
 

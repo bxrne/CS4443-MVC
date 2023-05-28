@@ -4,18 +4,28 @@ public class Employee {
     private int id;
     private String name;
     private double weekHours;
-    private double salary;
+    public double salary; // Idk how to pass this into index.html without making it public
 
     public Employee(int _id, String _name, double _weekHours) {
         id = _id;
         name = _name;
         weekHours = _weekHours;
-
+        
         if (weekHours <= 40) {
             salary = weekHours * 10;
         } else {
             salary = 400 + (weekHours - 40) * 15;
         }
+        
+    }
+
+
+    public Employee(int _id, String _name, double _weekHours, double _salary) {
+        id = _id;
+        name = _name;
+        weekHours = _weekHours;
+        salary = _salary;
+        
     }
 
     public int getId() {

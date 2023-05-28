@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ise.RMIS.handlers.AuthHandler;
 import com.ise.RMIS.handlers.EmployeeHandler;
-import com.ise.RMIS.handlers.SalaryResponse;
 import com.ise.RMIS.models.Employee;
 
 @Controller
@@ -21,27 +20,30 @@ public class RmisController {
     }
 
     @PostMapping("/calc")
-    public @ResponseBody SalaryResponse calculateSalary(@RequestParam("hours") String hours) {
+    public @ResponseBody Employee calculateSalary(@RequestParam("hours") String hours) {
         int hoursWorked = Integer.parseInt(hours);
+        int salary;
+        int id = 1;
 
-        // Here we would check the database if we were to take in a employee id we could
-        // see their salary and calculate based off that by dividing salary_wk by
-        // hours_wk
 
         try {
             EmployeeHandler employeeHandler = new EmployeeHandler();
-            employeeHandler.addEmployee(new Employee(1, "John Doe", 40));
+            
+
+            if (hoursWorked <= 40) {
+                salary = hoursWorked* 10;
+            } else {
+                salary = 400 + (hoursWorked - 40) * 15;
+            }
+            employeeHandler.addEmployee(new Employee(id, "John Doe", hoursWorked, salary));
+            return new Employee(id, "John Doe", hoursWorked, salary);//employeeHandler.getEmployee(id);
 
         } catch (Exception e) {
             // panic
         }
 
-        double salary = hoursWorked * 10.0;
-
-        SalaryResponse salaryResponse = new SalaryResponse();
-        salaryResponse.setSalary(salary);
-
-        return salaryResponse;
+        
+        return new Employee(0, "John Doe", 0, 0);
     }
 
     @GetMapping("/login")
