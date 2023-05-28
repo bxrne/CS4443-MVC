@@ -5,13 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ise.RMIS.handlers.AuthHandler;
+import com.ise.RMIS.handlers.EmployeeHandler;
 import com.ise.RMIS.handlers.SalaryResponse;
-
+import com.ise.RMIS.models.Employee;
 
 @Controller
 public class RmisController {
@@ -25,7 +24,18 @@ public class RmisController {
     public @ResponseBody SalaryResponse calculateSalary(@RequestParam("hours") String hours) {
         int hoursWorked = Integer.parseInt(hours);
 
-        // Here we would check the database if we were to take in a employee id we could see their salary and calculate based off that by dividing salary_wk by hours_wk
+        // Here we would check the database if we were to take in a employee id we could
+        // see their salary and calculate based off that by dividing salary_wk by
+        // hours_wk
+
+        try {
+            EmployeeHandler employeeHandler = new EmployeeHandler();
+            employeeHandler.addEmployee(new Employee(1, "John Doe", 40));
+
+        } catch (Exception e) {
+            // panic
+        }
+
         double salary = hoursWorked * 10.0;
 
         SalaryResponse salaryResponse = new SalaryResponse();
@@ -34,20 +44,18 @@ public class RmisController {
         return salaryResponse;
     }
 
-    
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginSubmit(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
-        try{
-            System.out.println(password);
+    public String loginSubmit(@RequestParam("username") String username, @RequestParam("password") String password,
+            Model model) {
+        try {
             AuthHandler auhandler = new AuthHandler(username, password);
             return "redirect:/";
-        }
-        catch (Exception e){
+        } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", "Username or password is incorrect");
             return "login";
         }
@@ -55,12 +63,9 @@ public class RmisController {
 
     // @GetMapping("/login#")
     // public String forgotPwd(Model model){
-    //     model.addAttribute("errorMessage", "This would redirect to an email or phone 2FA recovery");
-    //     return "login";
+    // model.addAttribute("errorMessage", "This would redirect to an email or phone
+    // 2FA recovery");
+    // return "login";
     // }
 
 }
-
-
-
-
