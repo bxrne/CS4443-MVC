@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ise.RMIS.handlers.AuthHandler;
-import com.ise.RMIS.handlers.SalaryRequest;
 import com.ise.RMIS.handlers.SalaryResponse;
 
 
