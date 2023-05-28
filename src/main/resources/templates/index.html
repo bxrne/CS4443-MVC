@@ -15,7 +15,7 @@
 
 					$.ajax({
 						type: 'POST',
-						url: '', // The server endpoint we are connecting to
+						url: '/calc', // The server endpoint we are connecting to
 						data: { hours: hoursWorked }, // Pass the hours worked value to the server
 						success: function(response) {
 							var salary = response.salary;
