@@ -55,7 +55,7 @@ public class EmployeeHandler implements IEmployeeHandler {
     }
 
     private int findUnusedId() {
-        int unusedId = 69;
+        int unusedId = 1;
         String line;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while ((line = reader.readLine()) != null) {

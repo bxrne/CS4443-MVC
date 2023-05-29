@@ -22,7 +22,7 @@ public class RmisController {
     }
 
     @PostMapping("/calc")
-    public @ResponseBody Employee calculateSalary(@RequestParam("hours") String hours,
+    public String calculateSalary(@RequestParam("hours") String hours,
             @RequestParam("name") String name) {
         int hoursWorked = Integer.parseInt(hours);
         int salary;
@@ -39,7 +39,7 @@ public class RmisController {
             Employee emp = new Employee(name, hoursWorked, salary);
             employeeHandler.addEmployee(emp);
 
-            return emp;
+            return "redirect:/";
 
         } catch (Exception e) {
             // panic
