@@ -3,13 +3,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Login</title>
+		<title>Home</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
-			$(document).ready(function() {
-				$('#calculateButton').click(function(e) {
+			$(document).ready(function () {
+				$("#calculateButton").click(function (e) {
 					e.preventDefault(); // Prevent default button behavior
+
 
 					var hoursWorked = $('#hours').val(); // Get the hours worked value
 					var name = $('#name').val(); // Get the name value
@@ -19,28 +20,32 @@
 						data: { hours: hoursWorked, name: name }, // Pass the hours worked value to the server
 						success: function(response) {
 							var salary = response.salary;
-							var resultHtml = '<div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-10 w-4/5 mx-auto">' +
-									'<h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">Your Weekly Salary</h1>' +
-									'<h2 class="text-l text-gray-800 mb-4 text-center">' + salary + '</h2>' +
-									'</div>';
-							$('#resultContainer').html(resultHtml); // Display the result in the resultContainer div
+							var resultHtml =
+								'<div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-10 w-4/5 mx-auto">' +
+								'<h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">Your Weekly Salary</h1>' +
+								'<h2 class="text-l text-gray-800 mb-4 text-center">' +
+								salary +
+								"</h2>" +
+								"</div>";
+							$("#resultContainer").html(resultHtml); // Display the result in the resultContainer div
 						},
-						error: function(xhr, status, error) {
+						error: function (xhr, status, error) {
 							console.log(xhr.responseText);
 							console.log(status);
 							console.log(error);
-						}
+						},
 					});
 				});
 			});
 		</script>
-
 	</head>
 
 	<body class="bg-gray-100 flex items-center justify-center h-screen">
 		<div class="flex flex-col items-center">
 			<div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-10 w-4/5 h-auto">
-				<h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">Calculate Weekly Salary</h1>
+				<h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">
+					Calculate Weekly Salary
+				</h1>
 				<div class="mb-4">
 					<label class="block text-gray-700 text-sm font-bold mb-2" for="name">Your Name</label>
 					<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
@@ -65,16 +70,16 @@
 				</div>
 
 				<div class="my-5">
-					<button id="calculateButton" class="bg-blue-500 w-full hover:bg-blue-700 text-white
-					font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+					<button
+						id="calculateButton"
+						class="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+					>
 						Calculate
 					</button>
 				</div>
 			</div>
 
-
 			<div id="resultContainer"></div>
-
 		</div>
 	</body>
 </html>

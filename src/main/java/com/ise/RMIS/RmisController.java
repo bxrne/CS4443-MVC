@@ -1,5 +1,7 @@
 package com.ise.RMIS;
 
+import java.io.FileNotFoundException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,15 +53,21 @@ public class RmisController {
         return "login";
     }
 
+    @GetMapping("/admin")
+    public String admin(Model model) throws FileNotFoundException {
+        EmployeeHandler handler = new EmployeeHandler();
+
+        model.addAttribute("employees", handler.getAllEmployees());
+
+        return "admin";
+    }
+
     @PostMapping("/login")
     public String loginSubmit(@RequestParam("username") String username, @RequestParam("password") String password,
             Model model) {
         try {
-            AuthHandler auhandler = new AuthHandler(username, password);
-
-            // return admin page
-
-            return "redirect:/";
+            new AuthHandler(username, password);
+            return "redirect:/admin";
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", "Username or password is incorrect");
             return "login";

@@ -1,9 +1,13 @@
 package com.ise.RMIS.handlers;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ise.RMIS.models.Employee;
 
@@ -61,12 +65,14 @@ public class EmployeeHandler implements IEmployeeHandler {
 
             for (String line : lines) {
                 String[] employeeData = line.split(",");
-                if (Integer.parseInt(employeeData[0]) == id) {
+                if (employeeData.length == 4 && Integer.parseInt(employeeData[0]) == id) {
                     return new Employee(
                             Integer.parseInt(employeeData[0]),
                             employeeData[1],
-                            Double.parseDouble(employeeData[2]), Double.parseDouble(employeeData[3]));
+                            Double.parseDouble(employeeData[2]),
+                            Double.parseDouble(employeeData[3]));
                 }
+
             }
 
         } catch (Exception e) {
@@ -79,29 +85,48 @@ public class EmployeeHandler implements IEmployeeHandler {
     /*
      * Retrieves all employees from the database
      */
+    // public Employee[] getAllEmployees() {
+    // try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+    // List<Employee> employeeList = new ArrayList<>();
+
+    // String line;
+    // while ((line = reader.readLine()) != null) {
+    // String[] employeeData = line.split(",");
+
+    // for (int i = 0; i < 50; i++)
+    // System.out.println(employeeData[2]);
+
+    // Employee employee = new Employee(
+    // 1,
+    // employeeData[1],
+    // Double.parseDouble(employeeData[2]));
+    // employeeList.add(employee);
+    // }
+
+    // return employeeList.toArray(new Employee[0]);
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+
+    // return new Employee[0];
+    // }
     public Employee[] getAllEmployees() {
-        try (FileReader reader = new FileReader(file);) {
-            int c;
-            StringBuilder dataBuilder = new StringBuilder();
-            while ((c = reader.read()) != -1) {
-                dataBuilder.append((char) c);
-            }
-            String data = dataBuilder.toString();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            List<Employee> employeeList = new ArrayList<>();
 
-            String[] lines = data.split("\n");
-            Employee[] employees = new Employee[lines.length];
-
-            for (int i = 0; i < lines.length; i++) {
-                String[] employeeData = lines[i].split(",");
-                employees[i] = new Employee(
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] employeeData = line.split(",");
+                Employee employee = new Employee(
                         Integer.parseInt(employeeData[0]),
                         employeeData[1],
                         Double.parseDouble(employeeData[2]));
+                employeeList.add(employee);
             }
 
-            return employees;
-        } catch (Exception e) {
-            // e.printStackTrace();
+            return employeeList.toArray(new Employee[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return new Employee[0];
