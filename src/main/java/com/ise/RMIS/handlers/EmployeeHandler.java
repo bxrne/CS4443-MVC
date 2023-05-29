@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.ise.RMIS.models.Employee;
@@ -107,31 +109,6 @@ public class EmployeeHandler implements IEmployeeHandler {
     /*
      * Retrieves all employees from the database
      */
-    // public Employee[] getAllEmployees() {
-    // try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-    // List<Employee> employeeList = new ArrayList<>();
-
-    // String line;
-    // while ((line = reader.readLine()) != null) {
-    // String[] employeeData = line.split(",");
-
-    // for (int i = 0; i < 50; i++)
-    // System.out.println(employeeData[2]);
-
-    // Employee employee = new Employee(
-    // 1,
-    // employeeData[1],
-    // Double.parseDouble(employeeData[2]));
-    // employeeList.add(employee);
-    // }
-
-    // return employeeList.toArray(new Employee[0]);
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
-
-    // return new Employee[0];
-    // }
     public Employee[] getAllEmployees() {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             List<Employee> employeeList = new ArrayList<>();
@@ -146,9 +123,11 @@ public class EmployeeHandler implements IEmployeeHandler {
                 employeeList.add(employee);
             }
 
+            Collections.reverse(employeeList);
+
             return employeeList.toArray(new Employee[0]);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return new Employee[0];
