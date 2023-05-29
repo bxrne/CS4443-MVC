@@ -12,7 +12,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.ise.RMIS.handlers.EmployeeHandler;
 import com.ise.RMIS.models.Employee;
 
 class EmployeeHandlerTests {
