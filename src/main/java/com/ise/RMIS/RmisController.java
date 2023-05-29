@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ise.RMIS.handlers.AuthHandler;
 import com.ise.RMIS.handlers.EmployeeHandler;
@@ -18,14 +17,14 @@ public class RmisController {
 
     @GetMapping("/")
     public String index() {
-        return "index"; // Returns the name of the HTML file without the extension
+        return "index";
     }
 
     @PostMapping("/calc")
-    public @ResponseBody Employee calculateSalary(@RequestParam("hours") String hours, @RequestParam("name") String name) {
+    public String calculateSalary(@RequestParam("hours") String hours,
+            @RequestParam("name") String name) {
         int hoursWorked = Integer.parseInt(hours);
         int salary;
-        int id = 1;
 
         try {
             EmployeeHandler employeeHandler = new EmployeeHandler();
@@ -36,16 +35,16 @@ public class RmisController {
                 salary = 400 + (hoursWorked - 40) * 15;
             }
 
-            Employee emp = new Employee(id, name, hoursWorked, salary); 
+            Employee emp = new Employee(name, hoursWorked, salary);
             employeeHandler.addEmployee(emp);
 
-            return emp;
+            return "redirect:/";
 
         } catch (Exception e) {
-            // panic
+            return "redirect:/";
+
         }
 
-        return null;
     }
 
     @GetMapping("/login")
@@ -56,9 +55,7 @@ public class RmisController {
     @GetMapping("/admin")
     public String admin(Model model) throws FileNotFoundException {
         EmployeeHandler handler = new EmployeeHandler();
-
         model.addAttribute("employees", handler.getAllEmployees());
-
         return "admin";
     }
 

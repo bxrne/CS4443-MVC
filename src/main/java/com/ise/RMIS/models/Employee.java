@@ -10,22 +10,29 @@ public class Employee {
         id = _id;
         name = _name;
         weekHours = _weekHours;
-        
+
         if (weekHours <= 40) {
             salary = weekHours * 10;
         } else {
             salary = 400 + (weekHours - 40) * 15;
         }
-        
+
     }
 
+    public Employee(String _name, double _weekHours, double _salary) {
+        name = _name;
+        weekHours = _weekHours;
+
+        salary = _salary;
+
+    }
 
     public Employee(int _id, String _name, double _weekHours, double _salary) {
         id = _id;
         name = _name;
         weekHours = _weekHours;
         salary = _salary;
-        
+
     }
 
     public int getId() {
@@ -46,6 +53,10 @@ public class Employee {
 
     public String toString() {
         return id + "," + name + "," + weekHours + "," + salary;
+    }
+
+    public void setId(int unusedId) {
+        id = unusedId;
     }
 
 }
