@@ -52,7 +52,6 @@ public class EmployeeHandler implements IEmployeeHandler {
         try (FileWriter writer = new FileWriter(file, true)) {
             writer.write(employee.toString() + "\n");
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -68,7 +67,7 @@ public class EmployeeHandler implements IEmployeeHandler {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return unusedId;
     }
