@@ -25,25 +25,25 @@ public class RmisController {
         int salary;
         int id = 1;
 
-
         try {
             EmployeeHandler employeeHandler = new EmployeeHandler();
-            
 
             if (hoursWorked <= 40) {
-                salary = hoursWorked* 10;
+                salary = hoursWorked * 10;
             } else {
                 salary = 400 + (hoursWorked - 40) * 15;
             }
-            employeeHandler.addEmployee(new Employee(id, "John Doe", hoursWorked, salary));
-            return new Employee(id, "John Doe", hoursWorked, salary);//employeeHandler.getEmployee(id);
+
+            Employee emp = new Employee(id, "John Doe", hoursWorked, salary); // ADD NAME
+            employeeHandler.addEmployee(emp);
+
+            return emp;
 
         } catch (Exception e) {
             // panic
         }
 
-        
-        return new Employee(0, "John Doe", 0, 0);
+        return null;
     }
 
     @GetMapping("/login")
@@ -56,6 +56,9 @@ public class RmisController {
             Model model) {
         try {
             AuthHandler auhandler = new AuthHandler(username, password);
+
+            // return admin page
+
             return "redirect:/";
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", "Username or password is incorrect");
