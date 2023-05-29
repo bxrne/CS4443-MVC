@@ -42,11 +42,33 @@ public class EmployeeHandler implements IEmployeeHandler {
             return;
         }
 
-        try (FileWriter writer = new FileWriter(file, true);) {
+        int unusedId = findUnusedId();
+
+        // Update the employee object with the unused ID
+        employee.setId(unusedId);
+
+        try (FileWriter writer = new FileWriter(file, true)) {
             writer.write(employee.toString() + "\n");
-        } catch (Exception e) {
-            // e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    private int findUnusedId() {
+        int unusedId = 69;
+        String line;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0].trim());
+                if (id >= unusedId) {
+                    unusedId = id + 1;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return unusedId;
     }
 
     /*
