@@ -22,7 +22,7 @@ public class RmisController {
     }
 
     @PostMapping("/calc")
-    public @ResponseBody Employee calculateSalary(@RequestParam("hours") String hours) {
+    public @ResponseBody Employee calculateSalary(@RequestParam("hours") String hours, @RequestParam("name") String name) {
         int hoursWorked = Integer.parseInt(hours);
         int salary;
         int id = 1;
@@ -36,7 +36,7 @@ public class RmisController {
                 salary = 400 + (hoursWorked - 40) * 15;
             }
 
-            Employee emp = new Employee(id, "John Doe", hoursWorked, salary); // ADD NAME
+            Employee emp = new Employee(id, name, hoursWorked, salary); 
             employeeHandler.addEmployee(emp);
 
             return emp;
